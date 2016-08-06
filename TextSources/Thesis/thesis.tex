@@ -1,0 +1,397 @@
+%%% Hlavní soubor. Zde se definují základní parametry a odkazuje se na ostatní části. %%%
+
+%% Verze pro jednostranný tisk:
+% Okraje: levý 40mm, pravý 25mm, horní a dolní 25mm
+% (ale pozor, LaTeX si sám přidává 1in)
+\documentclass[12pt,a4paper]{report}
+
+%\includeonly{chap2}
+
+\setlength\textwidth{145mm}
+\setlength\textheight{247mm}
+\setlength\oddsidemargin{15mm}
+\setlength\evensidemargin{15mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+% \openright zařídí, aby následující text začínal na pravé straně knihy
+\let\openright=\clearpage
+
+%% Pokud tiskneme oboustranně:
+% \documentclass[12pt,a4paper,twoside,openright]{report}
+% \setlength\textwidth{145mm}
+% \setlength\textheight{247mm}
+% \setlength\oddsidemargin{15mm}
+% \setlength\evensidemargin{0mm}
+% \setlength\topmargin{0mm}
+% \setlength\headsep{0mm}
+% \setlength\headheight{0mm}
+% \let\openright=\cleardoublepage
+
+%% Použité kódování znaků: obvykle latin2, cp1250 nebo utf8:
+\usepackage[utf8]{inputenc}
+
+%% Ostatní balíčky
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{todonotes}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{xcolor,colortbl}
+\usepackage[ruled,linesnumbered,lined,boxed]{algorithm2e}
+\usepackage{framed}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[refpages]{gloss}
+\makegloss
+
+\colorlet{shadecolor}{gray!50}
+
+\usepackage{adjustbox}
+\usepackage{array}
+
+\newcolumntype{R}[2]{%
+	>{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+	l%
+	<{\egroup}%
+}
+\newcommand*\rot{\multicolumn{1}{R{45}{1em}}}% no optional argument here, please!
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+\newtheorem{observation}{Observation}
+
+\newcommand{\attributeDistance}{\delta}
+\newcommand{\globalDistance}{\Delta}
+\newcommand{\dummy}{dummy}
+\newcommand{\dummyoutside}{dummy_n}
+\newcommand{\dummyinside}{dummy_a}
+
+%% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
+%% ale hlavně ho používáme k uložení metadat do PDF (včetně obsahu).
+%% POZOR, nezapomeňte vyplnit jméno práce a autora.
+%\usepackage[ps2pdf,unicode]{hyperref}   % Musí být za všemi ostatními balíčky
+%\hypersetup{pdftitle=Název práce}
+%\hypersetup{pdfauthor=Jméno Příjmení}
+
+%%% Drobné úpravy stylu
+
+% Tato makra přesvědčují mírně ošklivým trikem LaTeX, aby hlavičky kapitol
+% sázel příčetněji a nevynechával nad nimi spoustu místa. Směle ignorujte.
+%\makeatletter
+%\def\@makechapterhead#1{
+%  {\parindent \z@ \raggedright \normalfont
+%   \Huge\bfseries \thechapter. #1
+%   \par\nobreak
+%   \vskip 20\p@
+%}}
+%\def\@makeschapterhead#1{
+%  {\parindent \z@ \raggedright \normalfont
+%   \Huge\bfseries #1
+%   \par\nobreak
+%   \vskip 20\p@
+%}}
+%\makeatother
+
+% Toto makro definuje kapitolu, která není očíslovaná, ale je uvedena v obsahu.
+\def\chapwithtoc#1{
+\chapter*{#1}
+\addcontentsline{toc}{chapter}{#1}
+}
+
+
+\begin{document}
+
+% Trochu volnější nastavení dělení slov, než je default.
+\lefthyphenmin=2
+\righthyphenmin=2
+
+%%% Titulní strana práce
+
+\pagestyle{empty}
+\begin{center}
+
+\large
+
+Charles University in Prague
+
+\medskip
+
+Faculty of Mathematics and Physics
+
+\vfill
+
+{\bf\Large DOCTORAL THESIS}
+
+\vfill
+
+\centerline{\mbox{\includegraphics[width=60mm]{Images/mffLogo.png}}}
+
+\vfill
+\vspace{5mm}
+
+{\LARGE Jakub Šmíd}
+
+\vspace{15mm}
+
+% Název práce přesně podle zadání
+{\LARGE\bfseries Computational Intelligence Methods in Metalearning}
+
+\vfill
+
+% Název katedry nebo ústavu, kde byla práce oficiálně zadána
+% (dle Organizační struktury MFF UK)
+Department of Theoretical Computer Science and Mathematical Logic
+
+\vfill
+
+\begin{tabular}{rl}
+
+Supervisor of the doctoral thesis: & Mgr. Roman Neruda, CSc.  \\
+\noalign{\vspace{2mm}}
+Study programme: & Computer Science \\
+\noalign{\vspace{2mm}}
+Study branch: & Theoretical Computer Science \\
+\end{tabular}
+
+\vfill
+
+% Zde doplňte rok
+Prague 2016
+
+\end{center}
+
+\newpage
+
+%%% Na tomto místě mohou být napsána případná poděkování (vedoucímu práce,
+%%% konzultantovi, tomu, kdo zapůjčil software, literaturu apod.)
+
+\openright
+
+\noindent
+Pursuing my doctorate has been a long time effort, and I was lucky that many people supported me along the way. 
+
+Roman Neruda, my supervisor, deserves credit for all his advice, inspiring thoughts, all those late night finishes of our conference papers, and amazing pancakes he would prepare for us during our stays abroad. Because of him, the whole period of my study was an extraordinary adventure and one hell of a ride.
+
+I would also like to thank my present and former Ph.D. colleagues -- Martin Pilát, Ondřej Kazík, Klára Pešková, Tomáš Křen, Josef Moudřík, Martin Šlapák, and Jiří Vytasil.
+I have enjoyed all our discussions and lunches at Konírna. I am really proud that I had a chance to be a member of the team.
+
+No conference travels or logistics would be possible without the help of Petra Novotná from our faculty. Many thanks.
+
+I am very grateful to my whole family for their ongoing support during my research, especially to my parents. They made this journey possible.
+
+I would further like to express appreciation to my friends who were always there for me. Mainly, Dan Kobr, Veronika Šmídová, Jaroslav Švelch, Milan Plachý, and Tomáš Potužák.
+
+I also deeply value the help of Roman Kučera from Ataccama with speeding up my experiments by kindly providing some extra computational power.
+
+The biggest "Thank you" belongs to my soulmate Zónička. She has bravely supported me throughout the writing, and awaits me every time I return from a conference. She is my favourite hello and hardest goodbye.
+
+\newpage
+
+%%% Strana s čestným prohlášením k disertační práci
+
+\vglue 0pt plus 1fill
+
+\noindent
+I declare that I carried out this doctoral thesis independently, and only with the cited
+sources, literature and other professional sources.
+
+\medskip\noindent
+I understand that my work relates to the rights and obligations under the Act No.
+121/2000 Coll., the Copyright Act, as amended, in particular the fact that the Charles
+University in Prague has the right to conclude a license agreement on the use of this
+work as a school work pursuant to Section 60 paragraph 1 of the Copyright Act.
+
+\vspace{10mm}
+
+\hbox{\hbox to 0.5\hsize{%
+In Prague, Czech Republic, June 13, 2016 
+\hss}
+\linebreak
+\hbox to 0.5\hsize{%
+\hss}}
+\hbox{\hbox to 0.6\hsize{%
+
+		\hss}
+	\linebreak
+	\hbox to 0.4\hsize{%
+		\rule{5cm}{0.5pt}
+		\hss}}
+\hbox{\hbox to 0.7\hsize{%
+		
+		\hss}
+	\linebreak
+	\hbox to 0.3\hsize{%
+		Jakub Šmíd
+		\hss}}
+
+\vspace{20mm}
+\newpage
+
+%%% Povinná informační strana disertační práce
+
+\vbox to 0.5\vsize{
+\setlength\parindent{0mm}
+\setlength\parskip{5mm}
+
+Název práce:
+Metody výpočetní inteligence pro metaučení
+% přesně dle zadání
+
+Autor:
+Jakub Šmíd
+
+Katedra:  % Případně Ústav:
+Katedra teoretické informatiky a matematické logiky
+% dle Organizační struktury MFF UK
+
+Vedoucí disertační práce:
+Mgr. Roman Neruda, CSc., Ústav informatiky AV ČR, v.v.i.
+% dle Organizační struktury MFF UK, případně plný název pracoviště mimo MFF UK
+
+Abstrakt:
+% abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání disertační práce
+Tato práce je zaměřena na problematiku výběru algoritmu, která má za cíl doporučit algoritmus strojového učení k nové úloze. Řešení problému vychází z~myšlenky, že se algoritmy chovají podobně na podobných datech. Tato podobnost je často založena na extrakci pevného počtu metaatributů z každé úlohy. Vzhledem k tomu, že počet atributů se u různých úloh typicky liší, ztrácíme tak důležité informace. V této práci popíšeme třídu algoritmů, která dokáže zpracovat také informace o jednotlivých atributech. Naše metody jsou založeny na přiřazování atributů. Výsledná vzdálenost mezi úlohami je dána jako součet vzdáleností mezi atributy určenými optimálním přiřazením. Dále dokážeme, že za určitých podmínek můžeme zaručit, že výsledná vzdálenost mezi úlohami je metrika. Provedeme sadu experimentů na datech extrahovaných z OpenML repozitáře. Vytvoříme vzdálenost mezi atributy prostřednictvím genetických algoritmů, genetického programování a několika regularizačních technik, jako je koevoluce a zavedení vícekriteriality. Výsledky experimentů naznačují, že výsledná vzdálenost mezi úlohami může být úspěšně použita na problematiku výběru algoritmu. Ačkoliv jsme naše metody použili výhradně k metaučení, lze je aplikovat i v jiných oblastech. Navržené algoritmy jsou aplikovatelné kdekoliv, kde máme definovanou vzdálenost mezi prvky nějaké množiny a potřebujeme navrhnout vzdálenost mezi prvky potenční množiny původní množiny.
+
+Klíčová slova:
+Metaučení, Strojové učení, Metriky, Genetické algoritmy, \\ Přiřazování atributů
+
+\vss}
+
+\pagebreak
+\newpage
+
+\nobreak\vbox to 0.49\vsize{
+\setlength\parindent{0mm}
+\setlength\parskip{5mm}
+
+
+
+
+Title:
+% přesný překlad názvu práce v angličtině
+Computational Intelligence Methods in Metalearning
+
+Author:
+Jakub Šmíd
+
+Department:
+Department of Theoretical Computer Science and Mathematical Logic
+% dle Organizační struktury MFF UK v angličtině
+
+Supervisor:
+Mgr. Roman Neruda, CSc., Institute of Computer Science, AS CR
+% dle Organizační struktury MFF UK, případně plný název pracoviště
+% mimo MFF UK v angličtině
+
+Abstract:
+% abstrakt v rozsahu 80-200 slov v angličtině; nejedná se však o překlad
+% zadání disertační práce
+This thesis focuses on the algorithm selection problem, in which the goal is to recommend machine learning algorithms to a new dataset. The idea behind solving this issue is that algorithm performs similarly on similar datasets. The usual approach is to base the similarity measure on the fixed vector of metafeatures extracted out of each dataset. However, as the number of attributes among datasets varies, we may be loosing important information. Herein, we propose a family of algorithms able to handle even the non-propositional representations of datasets. Our methods use the idea of attribute assignment that builds the distance measure between datasets as a sum of distance given by the optimal assignment and an attribute distance measure. Furthermore, we prove that under certain conditions, we can guarantee the resulting dataset distance to be a metric. We carry out a series of metalearning experiments on the data extracted from the OpenML repository. We build up attribute distance using Genetic Algorithms, Genetic Programming and several regularization techniques such as multi-objectivization, coevolution, and bootstrapping. The experiment indicates that the resulting dataset distance can be successfully applied on the algorithm selection problem.
+Although we use the proposed distance measures exclusively on metalearning, it is possible to use our methods even beyond this task. The algorithms can handle every situation where we have a notion of distance between elements of some set and are looking to define a distance on the power set of the original set.
+
+Keywords:
+% 3 až 5 klíčových slov v angličtině
+Metalearning, Machine Learning, Metric, Genetic Algorithms, Attribute Assignment
+
+\vss}
+
+\newpage
+
+%%% Strana s automaticky generovaným obsahem disertační práce. U matematických
+%%% prací je přípustné, aby seznam tabulek a zkratek, existují-li, byl umístěn
+%%% na začátku práce, místo na jejím konci.
+
+\openright
+\pagestyle{plain}
+\setcounter{page}{1}
+\tableofcontents
+
+%%% Jednotlivé kapitoly práce jsou pro přehlednost uloženy v samostatných souborech
+%\include{preface}
+%Introduction
+\include{chap1}
+%Related work - also ours
+\include{chap2}
+\include{globalDistance}
+%Attribute assignment
+\include{chap3}
+% Obtaining the data
+\include{chap4}
+% Experiments
+\include{chap5}
+% GP
+\include{chap6}
+% Experiments
+\include{chap7}
+% Regularization + Experiments
+%\include{chap8}
+
+
+
+%TODO: single objective to solve multi objective
+% Distance based metalearning - see Hutters paper
+% Reference na priklady dalsich genetickych operatoru/modification
+% Bootstrapping - simple metrics to GP
+% Master thesis alignment is a metric
+% Question - muze byt v alignmentu jina funkce nez +?
+% Experiment databases - vanschoren
+% Diskuze - IRanking interface v quality, aby se nam vypocty neopakovali
+%Hyperparameter optimization
+%vanschoren expdb
+
+% Ukázka použití některých konstrukcí LateXu (odkomentujte, chcete-li)
+% \include{example}
+\include{epilog}
+
+%%% Seznam použité literatury
+%\include{bibliography}
+\bibliographystyle{plain}
+\bibliography{../bibli}
+
+\cleardoublepage
+% \phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+\cleardoublepage
+% \phantomsection
+\addcontentsline{toc}{chapter}{List of Algorithms}
+\listofalgorithms
+
+
+\cleardoublepage
+% \phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+%Term definitions
+\gloss[nocite]{*}
+
+%\setglosslabel{#2}
+%This will remove the category
+\renewcommand{\glossheading}[1]{% 
+	\stopglosslist % -- Don’t forget that! 
+}
+%	\renewenvironment{glosslist} {\begin{description}} {\end{description}}
+
+
+\def\glossname{Acronyms}
+\printgloss{../glossary}
+
+%%% Přílohy k disertační práci, existují-li (různé dodatky jako výpisy programů,
+%%% diagramy apod.). Každá příloha musí být alespoň jednou odkazována z vlastního
+%%% textu práce. Přílohy se číslují.
+\chapwithtoc{Attachments}
+All auxiliary materials including OpenML data dump and the text of the thesis are available at https://github.com/jaksmid/dissertation. 
+
+\openright
+\end{document}

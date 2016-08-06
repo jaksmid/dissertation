@@ -1,0 +1,374 @@
+%- princip je využití atributů
+%- kernely a kus z related work
+% algoritmus
+%- vlastnosti - věty o metrikách - možná zvláštni kapitola
+
+\chapter{Global Distance}
+\label{chapter:globalDistance}
+In the previous chapter, the concept of distances between datasets was introduced. In this chapter, we will discuss what are the properties of good distance measures in general. We will define a \emph{metric} and \emph{metric spaces}. We will also define a concept of \emph{norms}, which can be intuitively used to form a metric. We give a few examples of norms -- \emph{$p$-norms} and their weighted counterparts, and we outline a recognized fact that $p$-norms are indeed a norms using the \emph{H\"older's} and \emph{Minkowski's} inequalities. We summarize a few well known theorems about metric spaces -- that it is possible to rescale the metric space without violating the metrics axioms and that the sum of metric is also a metric. These facts will be useful in the chapters to follow. We move back to dataset distance measures and define a class of such distance measures using the global metafeatures. We will show that if the distance is based on weighted $p$-norms, then the resulting dataset distance is a metric. 
+
+\section{Metric Spaces}
+In this section, we will define metric, metric spaces and norms. We will also present few examples of the metrics.
+
+\begin{definition}
+	\label{definition:metric}
+	A \emph{metric} on a set $X$ is a function (called the distance function or simply distance)
+	\begin{equation}
+	d : X \times X \rightarrow [0,\infty),
+	\end{equation}
+	and for all x, y, z in X, the following conditions are satisfied:
+	\begin{enumerate}
+		\item $d(x,y) \geq 0$ (\emph{non-negativity}).
+		\item $d(x,y) = 0 \Leftrightarrow x = y$ (\emph{coincidence axiom}).
+		\item $d(x,y) = d(y,x)$ (\emph{symmetry}).
+		\item $d(x,z) \leq d(x,y) + d(y,z)$ (\emph{triangle inequality}).
+	\end{enumerate}	
+\end{definition}
+
+\begin{definition}
+	\emph{Metric space} is a tuple $(X,d),$ where $M$ is a set and $d$ is a metric on $M$.
+\end{definition}
+
+The first condition of Definition \ref{definition:metric} is sometimes omitted as the following holds:
+\begin{theorem}
+	\label{theorem:metricaxiom1redundant}
+	Metric conditions 2, 3 and 4 imply condition 1.
+	\begin{proof}
+		\begin{align}
+		d(x,x) &\le d(x,y)+d(y,x) & | & triangle \: inequality \label{eq:metricStep1} \\
+		d(x,x) &\le 2d(x,y) & | &  symmetry, \ref{eq:metricStep1} \label{eq:metricStep2}\\
+		0 &\le 2d(x,y) & | &  coincidence, \ref{eq:metricStep2} \label{eq:metricStep3} \\
+		d(x,y) &\ge 0 & | &  \ref{eq:metricStep3}
+		\end{align}
+	\end{proof}
+\end{theorem}
+In this thesis, we will prefer to use all four conditions, as it will later enable us to relax the definition of a metric a little bit, and propose additional algorithms for solving the algorithm ranking task.
+
+\subsection{Metric Examples}
+In this section, we will list few metric examples that will be later reused further in the thesis.
+
+\begin{theorem}
+	\label{theorem:discretemetric}
+	Let $M = \mathbb{R}^n$ and $x,y \in M$. Then function defined as
+	\begin{equation}
+	d(x,y)=
+	\begin{cases}
+	0; \text{ if } x = y, \\
+	1; \text{ otherwise}.
+	\end{cases}
+	\end{equation}
+	is a metric on $M$.	
+\end{theorem}
+\begin{definition}
+	We will denote the metric from Theorem \ref{theorem:discretemetric} as the \emph{discrete metric}. It can be easily verified that the discrete metric is indeed a metric.
+\end{definition}
+
+\begin{definition}
+	Let $V$ be a vector space over $\mathbb{F}$ (with $\mathbb{F} = \mathbb{R}$ or $\mathbb{F} = \mathbb{C}$) and $N:V \rightarrow \mathbb{R}$ a map such that, writing $N(u)=||u||$, the following results hold:
+	\begin{enumerate}
+		\item $\forall u \in V: ||u||\ge 0$ (\emph{non-negativity}).
+		\item $\forall u \in V: ||u|| = 0 \iff u = \overrightarrow{0}$ (\emph{separates points}).
+		\item $\forall \lambda \in \mathbb{F}, \forall u \in V: ||\lambda u||=|\lambda|||u||$ (\emph{absolute scalability}).
+		\item $\forall u,v \in V: ||u||+||v|| \ge ||u+v||$ (\emph{triangle inequality}).
+	\end{enumerate}
+	Then we call $||\cdot||$ a \emph{norm} and say that $(V, ||\cdot||)$ is a \emph{normed vector space}.
+\end{definition}
+Normed vector space can be easily transformed into a metric space:
+%http://web.utk.edu/~utkreu/docs/GTmini1.pdf
+\begin{theorem}
+	\label{theorem:metricfromnorm}
+	Let  $(V, ||\cdot||)$ be a normed vector space. Then function $d: V^2 \rightarrow \mathbb{R}$ defined as:
+	\begin{equation}
+	d(u,v) = ||u-v||
+	\end{equation}
+	is a metric on $V$. Consequently, the tuple $(V, d)$ is a metric space.
+	\begin{proof}
+		We will split the proof according to the different metric axioms.
+		\begin{enumerate}		
+			\item We will begin with proving the coincidence axiom:	
+			$$0 = d(v,w) \iff ||v-w|| =0 \iff v - w = \overrightarrow{0} \iff v = w.$$
+			\item Symmetry can be derived using the second axiom of the norm:
+			\begin{equation}
+			d(v,w)=||v-w||=|-1|||w-v||=||v-w||=d(w,v).
+			\end{equation}
+			\item A proof of triangle inequality uses the fourth norm property:
+			\begin{align}
+			d(v,w) &= ||v-w||=||(v-u)+(u-w)|| \le \\
+			& \le ||(v-u)||+||(u-w)||=d(v,u)+d(u,w).
+			\end{align}
+			\item 	The first metric axiom is implied by Theorem \ref{theorem:metricaxiom1redundant}. 	 
+		\end{enumerate}
+	As we have proven every metric axiom, we can conclude the proof.
+	\end{proof}
+\end{theorem}
+\begin{definition}
+	For $p \ge 1$, the \emph{p-norm} of $x \in \mathbb{R}^n$ is defined as $$||x||_p = {\left( \sum_{i=1}^{n}|x_i|^p \right)}^{1/p}.$$
+\end{definition}
+
+To show that the $p$-norm is formally a norm, we will first state two theorems -- H\"older's Inequality and Minkowski's Inequality.
+
+\begin{theorem}[H\"older's Inequality]
+	\label{theorem:holdersInequality}
+	Let $a,b$ be vectors in $\mathbb{R}^n$ and $p,q > 1, p,q \in \mathbb{R}$ satisfy $\frac{1}{p}+\frac{1}{q}=1$. Then
+	\begin{equation}
+	\sum_{i=1}^{n}|a_ib_i| \le {\left( \sum_{i=1}^{n}|a_i|^p \right)}^{1/p} {\left( \sum_{i=1}^{n}|b_i|^q \right)}^{1/q}.
+	\end{equation}
+	\begin{proof}
+		We will divide the proof into two steps. In the first step, we will prove an auxiliary claim that will be used in the step 2 to finally prove the desired inequality.
+		\begin{itemize}
+			\item Step 1.		
+			We shall show that if $x,y > 0, x,y \in \mathbb{R}$ and $0 < \lambda < 1, \lambda \in \mathbb{R}$ then
+			\begin{equation}
+			x^{\lambda}y^{1-\lambda} \le \lambda x + (1-\lambda)y.
+			\end{equation}
+			Set $t=\frac{x}{y}$. Then after dividing both sides of the equation by $y$, we get the equivalent equation to prove $t^{\lambda} \le \lambda t + (1-\lambda)$.
+			
+			Set $\phi(t)=\lambda t + (1-\lambda)-t^{\lambda}$. Then we need to show that $\phi(t) \ge 0$. We will investigate the first derivative of $\phi$: $\phi'(t)=\lambda - \lambda t^{\lambda-1}=\lambda(1-t^{\lambda-1})$, so
+			\begin{equation}
+			\phi'(t)=
+			\begin{cases}
+			< 0; \text{ if } t < 1, \\
+			= 0; \text{ if } t = 1, \\
+			> 0; \text{ otherwise}.
+			\end{cases}
+			\end{equation}
+			Since $\phi(1)=0$, according to the derivatives this must be a global minimum of the function and therefore the step 1 is concluded.
+			\item Step 2. Let us define $A_i$ and $B_i$ as
+			\begin{equation}
+			A_i={\frac{|a_i|^p}{\sum_{i=1}^{n}|a_i|^p}},
+			B_i = {\frac{|b_i|^q}{\sum_{i=1}^{n}|b_i|^q}}.
+			\end{equation}
+			Let $\lambda = \frac{1}{p}$. Then, by Step 1, 
+			\begin{equation}
+			A_i^{1/p}B_i^{1/q} \le \frac{A_i}{p}+\frac{B_i}{q}
+			\end{equation}
+			as $\frac{1}{q}=1-\frac{1}{p}$. By fully expanding $A_i$ and $B_i$, we obtain
+			\begin{equation}
+			{\frac{|a_i|}{{\left( \sum_{i=1}^{n}|a_i|^p \right)^{1/p}}}}
+			{\frac{|b_i|}{{\left( \sum_{i=1}^{n}|b_i|^q \right)^{1/q}}}}
+			\le
+			\frac{1}{p}{\frac{|a_i|^p}{\sum_{i=1}^{n}|a_i|^p}}
+			+ \frac{1}{q}{\frac{|b_i|^q}{\sum_{i=1}^{n}|b_i|^q}}.
+			\end{equation}
+			By summing above equation over $1, \dots ,n$ we obtain
+			\begin{equation}
+			{\frac{\sum_{i=1}^{n}|a_i||b_i|}{\left( \sum_{i=1}^{n} |a_i|^p \right)^{1/p}
+					\left( \sum_{i=1}^{n} |b_i|^q \right)^{1/q}		
+				}}
+				\le \frac{1}{p}+ \frac{1}{q}=1.
+				\end{equation}
+				Multiplying both sides by $\left( \sum_{i=1}^{n} |a_i|^p \right)^{1/p}
+				\left( \sum_{i=1}^{n} |b_i|^q \right)^{1/q}$ concludes the proof of the H\"older's Inequality.
+			\end{itemize}
+		\end{proof}
+	\end{theorem}
+	
+	\begin{theorem}[Minkowski's Inequality]
+		\label{theorem:minkowskiInequality}
+		Let $a,b$ be vectors in $\mathbb{R}^n$ and $p \ge 1, p \in \mathbb{N}$. Then
+		\begin{equation}
+		{\left( \sum_{i=1}^{n}|a_i + b_i|^p \right)}^{1/p} \le {\left( \sum_{i=1}^{n}|a_i|^p \right)}^{1/p} + {\left( \sum_{i=1}^{n}|b_i|^p \right)}^{1/p}.
+		\end{equation}
+		\begin{proof}
+			If $p=1$ we can see that the inequality holds using triangle inequality:
+			\begin{equation*}
+			|a_i+b_i| \le |a_i|+|b_i|.
+			\end{equation*}
+			By summing up we get
+			\begin{equation*}
+			\sum_{i=1}^{n}|a_i + b_i| \le  \sum_{i=1}^{n}|a_i| + \sum_{i=1}^{n}|b_i|.
+			\end{equation*}
+			If the $p > 1$ define $q > 1$ so that  $\frac{1}{p}+\frac{1}{q}=1$: $q = \frac{p}{p-1}$. We have that 
+			\begin{equation}
+			\label{eq:proofMinkowski1}
+			\begin{split}
+			& \sum_{i=1}^{n}|a_i + b_i|^p = \sum_{i=1}^{n}|a_i + b_i||a_i + b_i|^{p-1} \le \sum_{i=1}^{n}|a_i||a_i + b_i|^{p-1} + \sum_{i=1}^{n}|b_i||a_i + b_i|^{p-1}  \\
+			& \le 	{\left( \sum_{i=1}^{n}|a_i|^p \right)}^{1/p} {\left( \sum_{i=1}^{n}|a_i+b_i|^{(p-1)q} \right)}^{1/q} + {\left( \sum_{i=1}^{n}|b_i|^p \right)}^{1/p} {\left( \sum_{i=1}^{n}|a_i+b_i|^{(p-1)q} \right)}^{1/q}
+			\end{split}
+			\end{equation}
+			The last inequality follows from the H\"older's Inequality (Theorem \ref{theorem:holdersInequality}). Since 
+			\begin{equation*}
+			(p-1)q = p,
+			\end{equation*}
+			we may rewrite the inequality in Equation \ref{eq:proofMinkowski1} as 
+			\begin{equation}
+			\sum_{i=1}^{n}|a_i + b_i|^p \le
+			{\left({\left( \sum_{i=1}^{n}|a_i|^p \right)}^{1/p} + {\left( \sum_{i=1}^{n}|b_i|^p \right)}^{1/p}\right)} {\left( \sum_{i=1}^{n}|a_i+b_i|^{p} \right)}^{1/q}.
+			\end{equation}
+			Dividing by ${\left( \sum_{i=1}^{n}|a_i+b_i|^{p} \right)}^{1/q}$ we get
+			\begin{equation}
+			{\left( \sum_{i=1}^{n}|a_i+b_i|^{p} \right)}^{1-1/q} \le {\left( \sum_{i=1}^{n}|a_i|^p \right)}^{1/p} + {\left( \sum_{i=1}^{n}|b_i|^p \right)}^{1/p}.
+			\end{equation}
+			Since $1-1/q = 1/p$ we get 
+			\begin{equation}
+			{\left( \sum_{i=1}^{n}|a_i+b_i|^{p} \right)}^{1/p} \le {\left( \sum_{i=1}^{n}|a_i|^p \right)}^{1/p} + {\left( \sum_{i=1}^{n}|b_i|^p \right)}^{1/p}.
+			\end{equation}
+			which is the Minkowski's inequality.
+			%http://www.maths.manchester.ac.uk/~nikita/31002/minkowski.pdf
+			%https://www.youtube.com/watch?v=ATCGNBdFTEc
+		\end{proof}
+	\end{theorem}
+	\begin{theorem}
+		\label{theorem:pnormisnorm}
+		$P$-norm is a norm.
+		\begin{proof}
+			We will split the proof according to the different axioms of the norms.
+			\begin{enumerate}
+				\item We will begin with the non-negativity. $P$-norm is a root of sum of absolute values raised to power $p$, therefore it cannot be negative.
+				\item Root is 0 if and only if the argument is zero. In our case, if the sum of absolute values raised to power $p$ is zero. That is if and only if all the absolute values are zero, that is if and only if $x$ is a zero vector.
+				\item Let $\lambda \in \mathbb{R}$. The absolute scalability follows from: $$||\lambda x||={\left( \sum_{i=1}^{n}|\lambda x_i|^p \right)}^{1/p} = {\left( \sum_{i=1}^{n}|\lambda|^p|x_i|^p \right)}^{1/p}=$$
+				$$={\left(|\lambda|^p \sum_{i=1}^{n}|x_i|^p \right)}^{1/p} = |\lambda|{\left( \sum_{i=1}^{n}|x_i|^p \right)}^{1/p} = |\lambda|||x||. $$ 
+				\item The triangle inequality results from:	 
+				$$||u+v|| = {\left( \sum_{i=1}^{n}|u_i+v_i|^p \right)}^{1/p},$$
+				which is by Minkowski's Inequality less or equal to  $${\left( \sum_{i=1}^{n}|u_i|^p \right)}^{1/p} + {\left( \sum_{i=1}^{n}|v_i|^p \right)}^{1/p} = ||u||+||v||.$$
+			\end{enumerate}
+			As we have proven every norm axiom, we can conclude the proof.
+		\end{proof}
+	\end{theorem}
+	\begin{theorem}
+		\label{theorem:pmetric}
+		Let $M = \mathbb{R}^n, p \ge 1, p \in R$ and $x,y \in M$. Then the function $d_p: M \rightarrow \mathbb{R}$ defined as
+		\begin{equation}
+		d_p(x,y) = \big( \sum_{i=1}^{n}|x_i - y_i|^p \big) ^ {1/p}
+		\end{equation}
+		is a metric on $M$.
+		\begin{proof}
+			Follows from the fact that $p$-norm is a norm (Theorem \ref{theorem:pnormisnorm}) and the fact that derived metric according to Theorem \ref{theorem:metricfromnorm} is a metric. This metric corresponds to the function $d_p$ in question.
+		\end{proof}
+	\end{theorem}
+	We will define metrics for special values of $p$ from Theorem \ref{theorem:pmetric}:
+	\begin{definition}
+		% http://statnice.matfyz.info/generated/Matematika_06.pdf
+		Let $d_p$ be a metric from Theorem \ref{theorem:pmetric}.
+		Then:
+		\begin{enumerate}
+			\item Let us call $d_1$ defined as $d_1(x,y) = \sum_{i=1}^{n}|x_i-y_i|$ the taxicab or Manhattan distance.
+			\item Let us call $d_2$ defined as $d_2(x,y) = \sqrt{\big( \sum_{i=1}^{n}(x_i-y_i)^2 \big) }$ the Euclidean distance.
+			\item Let us call $d_\infty$ defined as $\lim\limits_{p \rightarrow \infty}d_p(x,y) = \max(|x_i - y_i|)$ the Chebyshev distance or maximum metric.
+		\end{enumerate}
+	\end{definition}
+	Furthermore, we can weight the $p$-norms.
+	%https://www.dpmms.cam.ac.uk/~twk/Top.pdf
+	%http://www.math.umn.edu/~olver/num_/lnn.pdf
+	%http://www.ams.sunysb.edu/~jiao/teaching/ams526_fall11/lectures/lecture02.pdf
+	%https://www.stat.uchicago.edu/~lekheng/courses/302/notes2.pdf
+	\begin{definition}
+		For $p \ge 1, w \in \mathbb{R}^n$, the weighted p-norm of $x \in \mathbb{C}^n$ is defined as $||x||_p = \big( \sum_{i=1}^{n}|w_ix_i|^p \big)^{1/p}$. 
+	\end{definition}
+	We will show that weighted $p$-norm is a norm as long as weights are strictly positive:
+	\begin{theorem}
+		\label{theorem:weightedpnormisnorm}
+		Let $w = (w_1, \dots w_n) \in \mathbb{R}^n$ and $\forall w_i \in w: w_i > 0$. Then weighted $p$-norm is a norm.
+		\begin{proof}
+			We will split the proof according to the different axioms of the norms.
+			\begin{enumerate}
+				\item We begin the proof by validating the non-negativity axiom. $\forall w_i,x_i$ is $|w_ix_i| \ge 0$, therefore the chain of exponentiation, summing and p-th root will also be non-negative.
+				\item  To prove the second axiom we have to verify both directions of the equivalence:
+				\begin{itemize}
+					\item $=>$ If weighted $p$-norm is zero, then all elements in the summation must be zero, and because weights are non-negative, all $x_i$ must have been zero.
+					\item $<=$ If $x$ is zero vector then all elements in the sum are zero.
+				\end{itemize}
+				\item Let $\lambda \in \mathbb{R}$. The absolute scalability follows from:
+				\begin{equation*}
+				||\lambda x w^T||={\left( \sum_{i=1}^{n}|\lambda x_i w_i|^p \right)}^{1/p} = {\left( \sum_{i=1}^{n}|\lambda|^p|x_i w_i|^p \right)}^{1/p}= 
+				\end{equation*}
+				\begin{equation*}
+				=  {\left(|\lambda|^p \sum_{i=1}^{n}|x_i w_i|^p \right)}^{1/p} = |\lambda|{\left(\sum_{i=1}^{n}|x_i w_i|^p \right)}^{1/p}=|\lambda|||x w^T||.
+				\end{equation*}
+				\item The triangle inequality results from:			
+				\begin{equation}			
+				||(u+v)w^T|| = {\left( \sum_{i=1}^{n}|(u_i+v_i) w_i|^p \right)}^{1/p} ={\left( \sum_{i=1}^{n}|u_iw_i+v_iw_i|^p \right)}^{1/p},
+				\label{eq:partOfWeightedPNormIsNorm}
+				\end{equation}
+				which is an instance of Minkowski's inequality (Theorem \ref{theorem:minkowskiInequality}) where $a=u_iw_i$ and $b=v_iw_i$. Therefore Equation \ref{eq:partOfWeightedPNormIsNorm} is less or equal to:
+				\begin{equation*}
+				{\left( \sum_{i=1}^{n}|u_iw_i|^p \right)}^{1/p} + {\left( \sum_{i=1}^{n}|v_iw_i|^p \right)}^{1/p}=	||uw^T|| + 	||vw^T||.
+				\end{equation*}
+			\end{enumerate}
+		As we have proven every norm axiom, we can conclude the proof.
+		\end{proof}	
+	\end{theorem}
+	
+	 Again, we can obtain weighted metrics from weighted $p$-norms through Theorem \ref{theorem:metricfromnorm}.
+	
+	We will also state a few theorems that will be useful when we will propose the new algorithms.
+	First, we will show that we can rescale the metric without breaking the axioms:
+	
+	\begin{theorem}
+		\label{theorem:metricrescaling}
+		Let $(M,\sigma)$ be a metric space and $k \in R, k > 0$. Then $\sigma'$ defined as $\sigma'(x,y)=k\sigma(x,y)$ is a metric on $M$.
+		
+		\begin{proof}
+			We will split the proof according to the different metric axioms.
+			\begin{enumerate}
+				\item The non-negativity follows from the fact that multiplying by positive number does not change the sign.
+				\item The coincidence axiom results from that multiplying by positive number returns zero if and only if the multiplied value is zero.
+				\item The fact that multiplying by positive number does not change the symmetry of the function is enough to prove the symmetry.
+				\item The triangle inequality remains to be proved: $\sigma'(x,y)=k\sigma(x,y) \le k\sigma(x,z)+k\sigma(z,y)=\sigma'(x,z)+\sigma'(z,y)$.
+			\end{enumerate}
+			As we have proven every metric axiom we can conclude the proof.
+		\end{proof}
+	\end{theorem}
+	
+	The rescaling would not work by zero or a negative number, as we would immediately break non-negativity or coincidence axiom.
+	The metric is also closed under addition:
+	
+	\begin{theorem}
+		\label{theorem:metricclosedoperation}
+		Let $(M,\alpha),(M,\beta)$ be metric spaces. Let $\sigma=\alpha+\beta$, then $(M,\sigma)$ is also a metric space.
+		
+		\begin{proof}
+		We will split the proof according to the different metric axioms.
+			\begin{enumerate}
+				\item The non-negativity axiom follows from the non-negativity of $\alpha$ and $\beta$. As they are both non-negative, their sum must be also non-negative.
+				\item For the coincidence axiom it is enough to realize that both metrics are equal to zero if and only if $x=y$. Otherwise both metrics are positive.
+				\item The symmetry axiom follows from:
+				\begin{align*}
+				\sigma(x,y)&=\alpha(x,y)+\beta(x,y)=\\
+				&=\alpha(y,x)+\beta(y,x)=\sigma(y,x).
+				\end{align*} 
+				\item The triangle inequality results from:
+				\begin{align*}
+				\sigma(x,y)=\alpha(x,y)+\beta(x,y) & \le \alpha(x,z)+\beta(x,z) + \alpha(z,y)+\beta(z,y) = \\
+				& = \sigma(x,z)+\sigma(z,y).
+				\end{align*} 
+			\end{enumerate}
+			As we have proven every metric axiom, we can conclude the proof.
+		\end{proof}
+	\end{theorem}
+	
+	The closure under addition together with the rescaling of the metric gives us the following corollary: 
+	
+	\begin{corollary}
+		\label{corollary:weightedMetricAddition}
+		Let $\lbrace (M,\alpha_1), \dots (M,\alpha_n) \rbrace$ be a set of metric spaces and $K=\lbrace k_1, \dots k_n \rbrace \subset \mathbb{R}_{>0}^n$ be the set of weights. Let $\sigma=\sum_{i=1}^{n}k_i\alpha_i$, then $(M,\sigma)$ is also a metric space.
+		
+		\begin{proof}
+			First we rescale each $\alpha_i$ by $k_i$. This rescaling results into another metric by Theorem \ref{theorem:metricrescaling}. Now we iteratively merge the rescaled metric using that the metric is closed under addition (Theorem \ref{theorem:metricclosedoperation}).
+		\end{proof}
+	\end{corollary}
+	This enables us to construct a metric using weighted sum of other metrics. Note that in this case negative values of some $k_i$ do not necessary break the metric if some metric would produce always higher values. However, for our purpose Corollary \ref{corollary:weightedMetricAddition} is sufficient.
+
+\section{Distance Using Global Metadata}
+\label{section:distanceUsingGlobalMetadata}
+In this section, we discuss group of several algorithms to measure distance between two datasets using global attributes only. Given a distance measure between global metadata $\sigma$, an algorithm for measuring the distance between datasets $\globalDistance$ using the $\sigma$ can be naturally designed, as per Algorithm \ref{algo:globalMetadataDistance}.
+
+\IncMargin{1em}
+\begin{algorithm}
+	\SetKwInOut{Input}{input}
+	\SetKwInOut{Output}{output}
+	\tcp{Pseudocode for measuring dataset distance measure using global attributes.}
+	\Input{$\sigma$ $\leftarrow$ Global metadata distance measure}
+	\Input{$x$ $\leftarrow$ First dataset}
+	\Input{$y$ $\leftarrow$ Second dataset}
+	\Output{Distance between two datasets}
+	\BlankLine
+	$\text{global}_x \leftarrow x.\text{global\_metafeatures}$\;
+	$\text{global}_y \leftarrow y.\text{global\_metafeatures}$\;
+	distance $\leftarrow \sigma(\text{global}_x,\text{global}_y)$\;
+	\Return distance\;
+	\caption{Distance $\globalDistance$ using global metadata: $IDatasetDistance$}
+	\label{algo:globalMetadataDistance}
+\end{algorithm}\DecMargin{1em}
+
+As global\_metafeatures property returns fixed sized real-valued vector, we can intuitively use any metric on $\mathbb{R}^n$, and Algorithm \ref{algo:globalMetadataDistance} will produce a metric on the dataset space. Therefore, we can use any metric defined in this chapter including the weighted $p$-norms. This one is particularly interesting, as it allows for testing different settings of weights and see how this change affects our metalearning framework.
