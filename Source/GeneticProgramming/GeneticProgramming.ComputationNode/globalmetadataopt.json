@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Type": "EvolutionOptimization", //SubtaskType
+    "Generations": 70, //Number of generation in each run
+    "Runs": 1, // Number of runs
+    "Kernelization": "NoKernelization", // Kernelization type - see enum Kernelization types
+    "GlobalMetadata": "IncludeAndNormalize", //Inckusion of global metadata
+    "Excluded": "DecisionStumpAUC-DecisionStumpKappa,HoeffdingAdwin_changes-HoeffdingDDM_warnings,J48_00001_AUC-JRipKappa,NBTreeAUC-NaiveBayesKappa,NBTreeAUC-NaiveBayesKappa,REPTreeDepth1AUC-SimpleLogisticKappa,kNN_1NAUC-kNN_3NKappa",
+    "Fitness": "GlobalMetadataFitness",
+    "K": 17,
+    "PopulationSize": 100,
+    "P": "max"    
+  }
+]

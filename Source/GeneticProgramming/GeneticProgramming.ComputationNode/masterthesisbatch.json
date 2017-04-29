@@ -1,0 +1,17 @@
+﻿[
+    {
+        "Type": "MasterThesisAlignment",
+        "Kernelization": "NoKernelization"
+    }
+    //{
+    //    "Type": "MasterThesisAlignment",
+    //    "Kernelization": [ "SpectrumClipKernelization", "SpectrumClipKernelization" ]
+    //},
+    //{
+    //    "Type": "MasterThesisAlignment",
+    //    "Kernelization": "SpectrumSquareKernelization"
+    //},
+    //{
+    //    "Type": "MasterThesisAlignment"
+    //}
+]

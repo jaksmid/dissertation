@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Statistics" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Statistics" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Contracts" />
+  <xs:complexType name="PopulationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AverageFitness" type="xs:double" />
+      <xs:element minOccurs="0" name="BestIndividualFitness" type="xs:double" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Contracts" minOccurs="0" name="BestProgram" nillable="true" type="q1:ProgramEnvelope" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Contracts" minOccurs="0" name="FirstParetoFront" nillable="true" type="q2:ArrayOfProgramEnvelope" />
+      <xs:element minOccurs="0" name="GenerationNumber" type="xs:unsignedInt" />
+      <xs:element minOccurs="0" name="Parent" nillable="true" type="tns:PopulationInfo" />
+      <xs:element minOccurs="0" name="PopSize" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PopulationInfo" nillable="true" type="tns:PopulationInfo" />
+  <xs:complexType name="ArrayOfGenerationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GenerationInfo" nillable="true" type="tns:GenerationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGenerationInfo" nillable="true" type="tns:ArrayOfGenerationInfo" />
+  <xs:complexType name="GenerationInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AverageFitness" type="xs:double" />
+      <xs:element minOccurs="0" name="BestFitness" type="xs:double" />
+      <xs:element minOccurs="0" name="ProgramStatistics" nillable="true" type="tns:ArrayOfProgramsStatistic" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GenerationInfo" nillable="true" type="tns:GenerationInfo" />
+  <xs:complexType name="ArrayOfProgramsStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProgramsStatistic" nillable="true" type="tns:ProgramsStatistic" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProgramsStatistic" nillable="true" type="tns:ArrayOfProgramsStatistic" />
+  <xs:complexType name="ProgramsStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AverageDepth" type="xs:double" />
+      <xs:element minOccurs="0" name="AverageNumberOfNodes" type="xs:double" />
+      <xs:element minOccurs="0" name="AverageWidth" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProgramsStatistic" nillable="true" type="tns:ProgramsStatistic" />
+  <xs:complexType name="ArrayOfProgramStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProgramStatistic" nillable="true" type="tns:ProgramStatistic" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProgramStatistic" nillable="true" type="tns:ArrayOfProgramStatistic" />
+  <xs:complexType name="ProgramStatistic">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Depth" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="NumberOfNodes" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Width" nillable="true" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProgramStatistic" nillable="true" type="tns:ProgramStatistic" />
+</xs:schema>

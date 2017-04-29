@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GPService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Statistics" />
+      <xsd:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Contracts" />
+      <xsd:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+      <xsd:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGPService_GetPopulationInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPopulationInfo" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetPopulationInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPopulationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_LoadPopulation_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPopulation" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_LoadPopulation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadPopulationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_Init_InputMessage">
+    <wsdl:part name="parameters" element="tns:Init" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_Init_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetIndividual_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIndividual" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetIndividual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIndividualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetSpecificIndividual_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpecificIndividual" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetSpecificIndividual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpecificIndividualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetBasicInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBasicInfo" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetBasicInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBasicInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetFitnessInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFitnessInfo" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetFitnessInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFitnessInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_RateIndividual_InputMessage">
+    <wsdl:part name="parameters" element="tns:RateIndividual" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_RateIndividual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RateIndividualResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetMetadataWithResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMetadataWithResults" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetMetadataWithResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMetadataWithResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetBestResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestResults" />
+  </wsdl:message>
+  <wsdl:message name="IGPService_GetBestResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBestResultsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGPService">
+    <wsdl:operation name="GetPopulationInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/GetPopulationInfo" message="tns:IGPService_GetPopulationInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/GetPopulationInfoResponse" message="tns:IGPService_GetPopulationInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadPopulation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/LoadPopulation" message="tns:IGPService_LoadPopulation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/LoadPopulationResponse" message="tns:IGPService_LoadPopulation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Init">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/Init" message="tns:IGPService_Init_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/InitResponse" message="tns:IGPService_Init_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIndividual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/GetIndividual" message="tns:IGPService_GetIndividual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/GetIndividualResponse" message="tns:IGPService_GetIndividual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecificIndividual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/GetSpecificIndividual" message="tns:IGPService_GetSpecificIndividual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/GetSpecificIndividualResponse" message="tns:IGPService_GetSpecificIndividual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBasicInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/GetBasicInfo" message="tns:IGPService_GetBasicInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/GetBasicInfoResponse" message="tns:IGPService_GetBasicInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFitnessInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/GetFitnessInfo" message="tns:IGPService_GetFitnessInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/GetFitnessInfoResponse" message="tns:IGPService_GetFitnessInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RateIndividual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/RateIndividual" message="tns:IGPService_RateIndividual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/RateIndividualResponse" message="tns:IGPService_RateIndividual_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMetadataWithResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/GetMetadataWithResults" message="tns:IGPService_GetMetadataWithResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/GetMetadataWithResultsResponse" message="tns:IGPService_GetMetadataWithResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBestResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGPService/GetBestResults" message="tns:IGPService_GetBestResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGPService/GetBestResultsResponse" message="tns:IGPService_GetBestResults_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IGPService" type="tns:IGPService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPopulationInfo">
+      <soap:operation soapAction="http://tempuri.org/IGPService/GetPopulationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadPopulation">
+      <soap:operation soapAction="http://tempuri.org/IGPService/LoadPopulation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Init">
+      <soap:operation soapAction="http://tempuri.org/IGPService/Init" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIndividual">
+      <soap:operation soapAction="http://tempuri.org/IGPService/GetIndividual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecificIndividual">
+      <soap:operation soapAction="http://tempuri.org/IGPService/GetSpecificIndividual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBasicInfo">
+      <soap:operation soapAction="http://tempuri.org/IGPService/GetBasicInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFitnessInfo">
+      <soap:operation soapAction="http://tempuri.org/IGPService/GetFitnessInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RateIndividual">
+      <soap:operation soapAction="http://tempuri.org/IGPService/RateIndividual" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMetadataWithResults">
+      <soap:operation soapAction="http://tempuri.org/IGPService/GetMetadataWithResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBestResults">
+      <soap:operation soapAction="http://tempuri.org/IGPService/GetBestResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GPService">
+    <wsdl:port name="BasicHttpBinding_IGPService" binding="tns:BasicHttpBinding_IGPService">
+      <soap:address location="http://localhost:3571/GPService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{668350CF-2DFF-4D8C-8F4D-5AC53FD17015}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GeneticProgramming.Core</RootNamespace>
+    <AssemblyName>GeneticProgramming.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>ba24e008</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord, Version=3.0.2.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\Accord.3.0.2\lib\net45\Accord.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.0.2.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\Accord.Math.3.0.2\lib\net45\Accord.Math.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fitness\AttributeAlignmentFitness.cs" />
+    <Compile Include="Fitness\AttributeMetricSimilarity.cs" />
+    <Compile Include="Fitness\DistanceMatrixResult.cs" />
+    <Compile Include="Fitness\Evolution\GlobalLocalCombined.cs" />
+    <Compile Include="Fitness\FitnessFactory.cs" />
+    <Compile Include="Fitness\FitnessTypes.cs" />
+    <Compile Include="Fitness\EvolutionAlignmentFitness.cs" />
+    <Compile Include="Fitness\BaseEvolutionFitness.cs" />
+    <Compile Include="Fitness\GlobalMetadataFitness.cs" />
+    <Compile Include="Fitness\IFitness.cs" />
+    <Compile Include="Fitness\TestFitness.cs" />
+    <Compile Include="GpClient\CoevolutionFitnessEvaluator.cs" />
+    <Compile Include="GpClient\FitnessEvaluator.cs" />
+    <Compile Include="Helpers\GpClientHelpers.cs" />
+    <Compile Include="Helpers\ProgramHelpers.cs" />
+    <Compile Include="Metrics\GeneticProgrammingDistance.cs" />
+    <Compile Include="Metrics\MetricAgrumentSwitcher.cs" />
+    <Compile Include="Metrics\AlignmentMetric.cs" />
+    <Compile Include="Metrics\GeneticProgramCategoricalDistance.cs" />
+    <Compile Include="Metrics\GeneticProgramNumericalDistance.cs" />
+    <Compile Include="Programs\AbsNode.cs" />
+    <Compile Include="Programs\MaxNode.cs" />
+    <Compile Include="Programs\UnaryNode.cs" />
+    <Compile Include="Programs\BinaryNode.cs" />
+    <Compile Include="Programs\DivisionNode.cs" />
+    <Compile Include="Programs\IProgramNode.cs" />
+    <Compile Include="Programs\LessNode.cs" />
+    <Compile Include="Programs\LessOrEqualNode.cs" />
+    <Compile Include="Programs\LogNode.cs" />
+    <Compile Include="Programs\MinusNode.cs" />
+    <Compile Include="Programs\Terminals\CurrrentValueTuple.cs" />
+    <Compile Include="Programs\Terminals\CurrrentValueWrapper.cs" />
+    <Compile Include="Programs\Terminals\NodeDoubleConst.cs" />
+    <Compile Include="Programs\PlusNode.cs" />
+    <Compile Include="Programs\ProgramConverter.cs" />
+    <Compile Include="Programs\RootNode.cs" />
+    <Compile Include="Programs\Terminals\TerminalNode.cs" />
+    <Compile Include="Programs\TimesNode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\GPService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Contracts.BasicInfo.datasource" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Contracts.BestResult.datasource" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Contracts.BestResultContract.datasource" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Contracts.FitnessInfo.datasource" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Contracts.MetadataWithResults.datasource" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Contracts.MetadataWithResultsContract.datasource" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Contracts.ProgramEnvelope.datasource" />
+    <None Include="Properties\DataSources\GeneticProgramming.Data.Statistics.PopulationInfo.datasource" />
+    <None Include="Service References\GPService\GPService.wsdl" />
+    <None Include="Service References\GPService\GPService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPService\GPService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPService\GPService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPService\GPService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPService\GPService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GPService\GPService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AForge\Accord.Genetic.csproj">
+      <Project>{2efaa327-1789-4438-b9f5-e83acae12db2}</Project>
+      <Name>Accord.Genetic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneticProgramming.Data\GeneticProgramming.Data.csproj">
+      <Project>{b97f683e-d168-4306-9a36-32b5ea37d790}</Project>
+      <Name>GeneticProgramming.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Metadata\Metadata.csproj">
+      <Project>{92a1603f-7d22-43aa-b598-0b2dfb7083f4}</Project>
+      <Name>Metadata</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GPService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GPService\GPService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GPService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GPService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GPService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\Libraries\Packages\Accord.3.0.2\build\Accord.targets" Condition="Exists('..\Libraries\Packages\Accord.3.0.2\build\Accord.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\Libraries\Packages\Accord.3.0.2\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Libraries\Packages\Accord.3.0.2\build\Accord.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

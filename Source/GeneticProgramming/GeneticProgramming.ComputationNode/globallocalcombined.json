@@ -1,0 +1,15 @@
+﻿[
+  {
+    "Type": "EvolutionOptimization",
+    "Generations": 70,
+    "Runs": 1,
+    "Kernelization": "NoKernelization",
+    "GlobalMetadata": "IncludeAndNormalize",
+    "Excluded": "DecisionStumpAUC-DecisionStumpKappa,HoeffdingAdwin_changes-HoeffdingDDM_warnings,J48_00001_AUC-JRipKappa,NBTreeAUC-NaiveBayesKappa,NBTreeAUC-NaiveBayesKappa,REPTreeDepth1AUC-SimpleLogisticKappa,kNN_1NAUC-kNN_3NKappa",
+    "Fitness": "GlobalLocalCombined",
+    "K": 17,
+    "PopulationSize": 100,
+    "P": 1,
+    "DummyDistanceConstant": false
+  }
+]

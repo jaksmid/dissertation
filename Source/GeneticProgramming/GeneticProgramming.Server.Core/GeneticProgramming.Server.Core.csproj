@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9AD63F33-0D70-4416-BCB5-FEFACE06C741}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GeneticProgramming.Server.Core</RootNamespace>
+    <AssemblyName>GeneticProgramming.Server.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MoreLinq, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrappers\BaseBootstrapper.cs" />
+    <Compile Include="Bootstrappers\FromSettingsBootstrapper.cs" />
+    <Compile Include="EndCriterions\IEndCriterion.cs" />
+    <Compile Include="GeneticOperators\AntiBloatFitnessScaling.cs" />
+    <Compile Include="GeneticOperators\BestIndividualSelector.cs" />
+    <Compile Include="GeneticOperators\Comparers\AntiBloatFitnessComparer.cs" />
+    <Compile Include="GeneticOperators\GlobalOperators\BoatExchange.cs" />
+    <Compile Include="GeneticOperators\Comparers\FitnessComparer.cs" />
+    <Compile Include="GeneticOperators\Comparers\NsgaComparator.cs" />
+    <Compile Include="GeneticOperators\Crossover\Crossover.cs" />
+    <Compile Include="GeneticOperators\Crossover\NsgaCrossover.cs" />
+    <Compile Include="GeneticOperators\Elitism.cs" />
+    <Compile Include="GeneticOperators\ElitistCrossover.cs" />
+    <Compile Include="GeneticOperators\GlobalOperators\CleanupQueue.cs" />
+    <Compile Include="GeneticOperators\GlobalOperators\TriggerNextGenerationInEveryPopulation.cs" />
+    <Compile Include="GeneticOperators\IGeneticOperator.cs" />
+    <Compile Include="GeneticOperators\GlobalOperators\IGlobalGeneticOperator.cs" />
+    <Compile Include="GeneticOperators\Mutation\Mutation.cs" />
+    <Compile Include="GeneticOperators\Mutation\MutationFlip.cs" />
+    <Compile Include="GeneticOperators\Mutation\NsgaMutation.cs" />
+    <Compile Include="GeneticOperators\Processing\GenerationPostprocess.cs" />
+    <Compile Include="GeneticOperators\Reduction\ElitismReduction.cs" />
+    <Compile Include="GeneticOperators\SelectionRoulette.cs" />
+    <Compile Include="GeneticOperators\Selection\BaseTournamentSelection.cs" />
+    <Compile Include="GeneticOperators\Selection\CoevolutionaryTournamentSelection.cs" />
+    <Compile Include="GeneticOperators\Selection\NonDestructiveTournamentSelection.cs" />
+    <Compile Include="GeneticOperators\Selection\TournamentSelection.cs" />
+    <Compile Include="GeneticOperators\Validation\ValidateBest.cs" />
+    <Compile Include="Initialization\CategoricalBootstrapper.cs" />
+    <Compile Include="Initialization\CreateBoostrapperFromWeights.cs" />
+    <Compile Include="Initialization\IInitializationBootstrapper.cs" />
+    <Compile Include="Initialization\ManhattanDistanceBootstrapper.cs" />
+    <Compile Include="Initialization\NumericalBootstrapper.cs" />
+    <Compile Include="LocalGeneticProgramming.cs" />
+    <Compile Include="GeneticProgramming\GpProgram.cs" />
+    <Compile Include="GeneticProgramming\Individual.cs" />
+    <Compile Include="GeneticProgramming\Operator.cs" />
+    <Compile Include="GeneticProgramming\Population.cs" />
+    <Compile Include="GeneticProgramming\Populations.cs" />
+    <Compile Include="GeneticProgramming\SingleProgramIndividual.cs" />
+    <Compile Include="NonDominatedToValidate.cs" />
+    <Compile Include="Settings\GeneticOperatorTemplate.cs" />
+    <Compile Include="Settings\IGpExperimentSettings.cs" />
+    <Compile Include="Helpers\IndividualHelpers.cs" />
+    <Compile Include="Helpers\ProgramEnvelopeFactory.cs" />
+    <Compile Include="Helpers\ProgramFactory.cs" />
+    <Compile Include="Helpers\RandomHelpers.cs" />
+    <Compile Include="History.cs" />
+    <Compile Include="IGeneticProgramming.cs" />
+    <Compile Include="Initialization\Full.cs" />
+    <Compile Include="Initialization\Grow.cs" />
+    <Compile Include="Initialization\IProgramInitializator.cs" />
+    <Compile Include="Initialization\PopulationIntialization.cs" />
+    <Compile Include="Initialization\RampedHalf.cs" />
+    <Compile Include="Bootstrappers\AttributeAlignmentBootstrapper.cs" />
+    <Compile Include="Bootstrappers\IBootstrapper.cs" />
+    <Compile Include="Bootstrappers\NsgaBootstrapper.cs" />
+    <Compile Include="Bootstrappers\TestBootstrapper.cs" />
+    <Compile Include="Bootstrappers\UCIErrorInitiator.cs" />
+    <Compile Include="Initialization\UniformPopulationInitializator.cs" />
+    <Compile Include="IValidationSelector.cs" />
+    <Compile Include="Nsga\CrowdingDistanceCalculator.cs" />
+    <Compile Include="Nsga\CrowdingInitOperator.cs" />
+    <Compile Include="Nsga\DominatedRanking.cs" />
+    <Compile Include="Operators\BaseOperatorTemplate.cs" />
+    <Compile Include="Operators\DoubleTemplate.cs" />
+    <Compile Include="Operators\IntTemplate.cs" />
+    <Compile Include="Operators\OperatorHelpers.cs" />
+    <Compile Include="GeneticProgrammingExperiment.cs" />
+    <Compile Include="Programs\ProgramTypeSet.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateIndividualTask.cs" />
+    <Compile Include="RateIndividualQueue.cs" />
+    <Compile Include="Serialization\PopulationInfoSerializable.cs" />
+    <Compile Include="Serialization\PopulationSerializable.cs" />
+    <Compile Include="Serialization\PopulationsSerializable.cs" />
+    <Compile Include="BestIndividualsToValidate.cs" />
+    <Compile Include="Settings\PopulationBootstrapSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeneticProgramming.Data\GeneticProgramming.Data.csproj">
+      <Project>{b97f683e-d168-4306-9a36-32b5ea37d790}</Project>
+      <Name>GeneticProgramming.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

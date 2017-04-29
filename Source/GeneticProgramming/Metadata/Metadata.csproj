@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{92A1603F-7D22-43AA-B598-0B2DFB7083F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Metadata</RootNamespace>
+    <AssemblyName>Metadata</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>b355d64e</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accord, Version=3.0.2.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\Accord.3.0.2\lib\net45\Accord.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Accord.Math, Version=3.0.2.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\Accord.Math.3.0.2\lib\net45\Accord.Math.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Accord.Statistics, Version=3.0.2.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\Accord.Statistics.3.0.2\lib\net45\Accord.Statistics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\MathNet.Numerics.3.7.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MoreLinq, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenML, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\openMl.0.5.1\lib\OpenML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Polenter.SharpSerializer">
+      <HintPath>..\Libraries\Packages\SharpSerializer.2.20\lib\net20\Polenter.SharpSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\Packages\RestSharp.105.2.3\lib\net451\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\AttributeMetadata.cs" />
+    <Compile Include="Attributes\BooleanMetadata.cs" />
+    <Compile Include="Attributes\CategoricalMetadata.cs" />
+    <Compile Include="Attributes\DummyAttribute.cs" />
+    <Compile Include="Attributes\NumericalAttribute.cs" />
+    <Compile Include="Distance\DistanceEntry.cs" />
+    <Compile Include="Distance\DistanceMatrix.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\CategoricalDistance.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\ConstantDummyDistance.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\ConstantDummyDistanceFactory.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\ConstantGpDummyDistance.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\DummyDistanceFactory.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\DummyDistancePair.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\DummyDistanceSettings.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\FromAttributeDummyDistanceFactory.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\GpDummyDistancePair.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\HungarianAlgorithm.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\HungarianAlgorithmWrapper.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\IAttributeMetric.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\IDummyDistance.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\IGpDummyDistance.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\NumericalDistance.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\WeightedPNormDistance.cs" />
+    <Compile Include="Distance\HungarianAlgorithm\WeightedPNormFloatDistance.cs" />
+    <Compile Include="Distance\IMetadataMetric.cs" />
+    <Compile Include="Distance\Kernelization\BaseKernelization.cs" />
+    <Compile Include="Distance\Kernelization\EigenValuesKernelization.cs" />
+    <Compile Include="Distance\Kernelization\IKernelization.cs" />
+    <Compile Include="Distance\Kernelization\KernelizationFactory.cs" />
+    <Compile Include="Distance\Kernelization\KernelizationTypes.cs" />
+    <Compile Include="Distance\Kernelization\MetricRepairment.cs" />
+    <Compile Include="Distance\Kernelization\NoKernelization.cs" />
+    <Compile Include="Distance\Kernelization\SpectrumFlipKernelization.cs" />
+    <Compile Include="Distance\Kernelization\SpectrumClipKernelization.cs" />
+    <Compile Include="Distance\Kernelization\SpectrumShiftKernelization.cs" />
+    <Compile Include="Distance\Kernelization\SpectrumSquareKernelization.cs" />
+    <Compile Include="Distance\MasterThesisMetric.cs" />
+    <Compile Include="Distance\MetadataMetricCombiner.cs" />
+    <Compile Include="Distance\Metric\IMetricSimilarity.cs" />
+    <Compile Include="Distance\Metric\MetricSimilarity.cs" />
+    <Compile Include="Distance\GlobalMetadataMetric.cs" />
+    <Compile Include="Distance\SimpleGlobalMetadataMetric.cs" />
+    <Compile Include="Global\DatasetMetadata.cs" />
+    <Compile Include="Global\MetadataCollection.cs" />
+    <Compile Include="Import\AttributeAnalyzer.cs" />
+    <Compile Include="Import\CSVMetadataImporter.cs" />
+    <Compile Include="Import\DbMetadataImporter.cs" />
+    <Compile Include="Import\GlobalMetadataInclusion.cs" />
+    <Compile Include="Import\GlobalMetadataSettings.cs" />
+    <Compile Include="Import\IMetadataImporter.cs" />
+    <Compile Include="Mining\OpenMlMiner.cs" />
+    <Compile Include="Normalization\Normalizations.cs" />
+    <Compile Include="Prediction\BaselinePredictor.cs" />
+    <Compile Include="Prediction\Evaluation\PredictionQualityEvaluator.cs" />
+    <Compile Include="Prediction\Evaluation\RankingPredictorEvaluator.cs" />
+    <Compile Include="Prediction\Evaluation\SpearmanCalculator.cs" />
+    <Compile Include="Prediction\IRankingPredictor.cs" />
+    <Compile Include="Prediction\KnnPredictor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ranking\RankingResult.cs" />
+    <Compile Include="Results\ResultsProvider.cs" />
+    <Compile Include="Results\ResultsProviderBackup.cs" />
+    <Compile Include="Serialization\IMetadataSerializer.cs" />
+    <Compile Include="Serialization\SharpMetadataSerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeneticProgramming.Data\GeneticProgramming.Data.csproj">
+      <Project>{b97f683e-d168-4306-9a36-32b5ea37d790}</Project>
+      <Name>GeneticProgramming.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\Libraries\Packages\Accord.3.0.2\build\Accord.targets" Condition="Exists('..\Libraries\Packages\Accord.3.0.2\build\Accord.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\Libraries\Packages\Accord.3.0.2\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\Libraries\Packages\Accord.3.0.2\build\Accord.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

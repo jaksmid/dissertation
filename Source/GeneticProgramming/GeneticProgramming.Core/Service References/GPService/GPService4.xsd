@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+  <xs:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Statistics" />
+  <xs:import schemaLocation="http://localhost:3571/GPService.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ProgramEnvelope">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Evaluate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ExperimentIdentifier" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GenerationNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="GenerationProgress" type="xs:int" />
+      <xs:element minOccurs="0" name="NumberOfIndividual" type="xs:int" />
+      <xs:element minOccurs="0" name="PopulationNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="Programs" nillable="true" type="tns:ArrayOfProgram" />
+      <xs:element minOccurs="0" name="Validate" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProgramEnvelope" nillable="true" type="tns:ProgramEnvelope" />
+  <xs:complexType name="ArrayOfProgram">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Program" nillable="true" type="tns:Program" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProgram" nillable="true" type="tns:ArrayOfProgram" />
+  <xs:complexType name="Program">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ArrayOfProgram" />
+      <xs:element minOccurs="0" name="Label" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Program" nillable="true" type="tns:Program" />
+  <xs:complexType name="ArrayOfProgramEnvelope">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProgramEnvelope" nillable="true" type="tns:ProgramEnvelope" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProgramEnvelope" nillable="true" type="tns:ArrayOfProgramEnvelope" />
+  <xs:complexType name="BasicInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NumberOfPopulations" type="xs:int" />
+      <xs:element minOccurs="0" name="PopulationSize" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BasicInfo" nillable="true" type="tns:BasicInfo" />
+  <xs:complexType name="FitnessInfo">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="FitnessDistribution" nillable="true" type="q1:ArrayOfKeyValuePairOfdoubleint" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Statistics" minOccurs="0" name="FitnessHistory" nillable="true" type="q2:ArrayOfGenerationInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FitnessInfo" nillable="true" type="tns:FitnessInfo" />
+  <xs:complexType name="IndividualEvaluationResults">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ExperimentIdentifier" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fitness" type="xs:double" />
+      <xs:element minOccurs="0" name="GenerationNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="IndividualNumber" type="xs:int" />
+      <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MultiObjectiveFitness" nillable="true" type="q3:ArrayOfdouble" />
+      <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MultiObjectiveValidation" nillable="true" type="q4:ArrayOfdouble" />
+      <xs:element minOccurs="0" name="PopulationNumber" type="xs:int" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GeneticProgramming.Data.Statistics" minOccurs="0" name="ProgramStatistics" nillable="true" type="q5:ArrayOfProgramStatistic" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IndividualEvaluationResults" nillable="true" type="tns:IndividualEvaluationResults" />
+  <xs:complexType name="ArrayOfMetadataWithResults">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MetadataWithResults" nillable="true" type="tns:MetadataWithResults" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMetadataWithResults" nillable="true" type="tns:ArrayOfMetadataWithResults" />
+  <xs:complexType name="MetadataWithResults">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeMetadata" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DatasetName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OpenMlId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MetadataWithResults" nillable="true" type="tns:MetadataWithResults" />
+  <xs:complexType name="ArrayOfBestResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BestResult" nillable="true" type="tns:BestResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBestResult" nillable="true" type="tns:ArrayOfBestResult" />
+  <xs:complexType name="BestResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accuracy" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="AgentType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DatasetID" type="xs:long" />
+      <xs:element minOccurs="0" name="DatasetName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BestResult" nillable="true" type="tns:BestResult" />
+</xs:schema>

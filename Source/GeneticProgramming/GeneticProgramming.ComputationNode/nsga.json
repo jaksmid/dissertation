@@ -1,0 +1,518 @@
+﻿[
+  {
+    "Type": "GeneticProgramming",
+    "Fitness": "AttributeAlignmentFitness",
+    "FitnessCanChange": false,
+    "RepairToSemimetric": true,
+    "PopulationSize": 120,
+    "Generations": 80,
+    "K": 17,
+    "Coevolution": false,
+    "DummyDistanceConstant": false,
+    //"Threads": 1,
+    "MultiObjective": true,
+    "GeneticOperators": [
+      {
+        "Type": "CrowdingInitOperator"
+      },
+      {
+        "Type": "NsgaElitismReduction"
+      },
+      {
+        "Type": "NonDestructiveTournamentSelection",
+        "Arguments": {
+          "ProbabilityOfBetterWinning": "0.7",
+          "TournamentSize": 3
+        }
+      },
+      {
+        "Type": "NsgaCrossover",
+        "Arguments": {
+        }
+      },
+      {
+        "Type": "NsgaCrossover",
+        "Arguments": {
+          "ProgramSetNumber": "1"
+        }
+      },
+      {
+        "Type": "NsgaMutation",
+        "Arguments": {
+        }
+      },
+      {
+        "Type": "NsgaMutation",
+        "Arguments": {
+          "ProgramSetNumber": "1"
+        }
+      }
+    ],
+    "Populations": [
+      {
+        "PopulationsCount": 1,
+        "TypeSets": [
+          [
+            {
+              "Type": "double",
+              "Label": "double",
+              "Arguments": [ "0", "0", "10" ]
+            },
+            {
+              "Type": "base",
+              "Label": "-",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "abs",
+              "Arguments": [ "1" ]
+            },
+            {
+              "Type": "base",
+              "Label": "root",
+              "Arguments": [ "1" ]
+            },
+            {
+              "Type": "base",
+              "Label": "+",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "*",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "/",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "l",
+              "Arguments": [ "4" ]
+            },
+            {
+              "Type": "base",
+              "Label": "le",
+              "Arguments": [ "4" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PR",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "SR",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "CT",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "EN",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "FR",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MV",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ValuesCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "NonMissingValuesCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MissingValuesCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfMissing",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfNonMissing",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "Distinct",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfMostFrequentClass",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfLeastFrequentClass",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "AveragePercentageOfClass",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "AverageClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MostFequentClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "LeastFequentClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ModeClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ModeClassPercentage",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MedianClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MedianClassPercentage",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "IU",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "IO",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "Min",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "Max",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "KURT",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "Mean",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "SK",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "SD",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "VAR",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "Mode",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "Median",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ValueRange",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "LowerOuterFence",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "HigherOuterFence",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "HigherQuartile",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "LowerQuartile",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "HigherConfidence",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "LowerConfidence",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PositiveCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PositivePercentage",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "NegativeCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "NegativePercentage",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "HasNegativeValues",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "HasPositiveValues",
+              "Arguments": [ "0", "0", "2" ]
+            }
+          ],
+          [
+            {
+              "Type": "double",
+              "Label": "double",
+              "Arguments": [ "0", "0", "10" ]
+            },
+            {
+              "Type": "base",
+              "Label": "-",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "abs",
+              "Arguments": [ "1" ]
+            },
+            {
+              "Type": "base",
+              "Label": "root",
+              "Arguments": [ "1" ]
+            },
+            {
+              "Type": "base",
+              "Label": "+",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "max",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "*",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "/",
+              "Arguments": [ "2" ]
+            },
+            {
+              "Type": "base",
+              "Label": "l",
+              "Arguments": [ "4" ]
+            },
+            {
+              "Type": "base",
+              "Label": "le",
+              "Arguments": [ "4" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PR",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "SR",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "CT",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "EN",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "FR",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MV",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ValuesCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "NonMissingValuesCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MissingValuesCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfMissing",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfNonMissing",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "Distinct",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfMostFrequentClass",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "PercentageOfLeastFrequentClass",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "AveragePercentageOfClass",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "AverageClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MostFequentClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "LeastFequentClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ModeClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ModeClassPercentage",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MedianClassCount",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "MedianClassPercentage",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "UD",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "TU",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "TK",
+              "Arguments": [ "0", "0", "2" ]
+            },
+            {
+              "Type": "int",
+              "Label": "ChiSquareUniformDistribution",
+              "Arguments": [ "0", "0", "2" ]
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

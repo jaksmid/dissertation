@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c6421d45-5fc8-4979-b7b9-3243258fb17f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3571/GPService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GPService.xsd" MetadataType="Schema" ID="be3eb765-9d15-4ce1-a624-4e1d87b50d33" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?xsd=xsd5" />
+    <MetadataFile FileName="GPService1.xsd" MetadataType="Schema" ID="0253d40a-0db3-4a0c-bcbc-6b8fc3ffa26a" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GPService2.xsd" MetadataType="Schema" ID="39a26cb1-f8ae-43f7-9000-550772b6e599" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GPService3.xsd" MetadataType="Schema" ID="5eceb4c6-f1bb-4c9b-b53e-d10e2dd713a8" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?xsd=xsd4" />
+    <MetadataFile FileName="GPService4.xsd" MetadataType="Schema" ID="b725b8aa-74c1-4fce-aba2-308011828e4e" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?xsd=xsd3" />
+    <MetadataFile FileName="GPService.disco" MetadataType="Disco" ID="3fecff0a-d150-479c-b42c-0b5b6b548611" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?disco" />
+    <MetadataFile FileName="GPService.wsdl" MetadataType="Wsdl" ID="9ec963cc-8b23-4999-a8ac-0b7b39ba523e" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?wsdl" />
+    <MetadataFile FileName="GPService5.xsd" MetadataType="Schema" ID="6e2d2480-0438-4238-9082-d8c46e660a0d" SourceId="1" SourceUrl="http://localhost:3571/GPService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

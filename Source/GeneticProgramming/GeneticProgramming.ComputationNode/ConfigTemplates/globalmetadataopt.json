@@ -1,0 +1,11 @@
+﻿[
+  {
+    "Type": "GlobalMetadataOptimization", //SubtaskType
+    "Generations": 200,                   //Number of generation in each run
+    "Runs": 1,                            // Number of runs
+    "Kernelization": "NoKernelization",   // Kernelization type - see enum Kernelization types
+    "GlobalMetadata": "IncludeAndNormalize", //Inckusion of global metadata
+    //"Excluded": "" //Excluded global metadata - list of range separated by comma, range is tuple separated by -
+    "Excluded": "J48_00001_AUC-JRipKappa,NBTreeAUC-NaiveBayesKappa,NBTreeAUC-NaiveBayesKappa,REPTreeDepth1AUC-SimpleLogisticKappa,kNN_1NAUC-kNN_3NKappa"
+  }    
+]
